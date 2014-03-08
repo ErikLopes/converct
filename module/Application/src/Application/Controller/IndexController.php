@@ -12,10 +12,34 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+use Functions\Controller\FunctionsController as Functions;
+
 class IndexController extends AbstractActionController
 {
-    public function indexAction()
-    {
-        return new ViewModel();
+    
+    protected $functions;
+    
+    function __construct(){
+        $this->functions = new Functions();
+    }
+    
+    public function indexAction(){
+           
+        $user_profile = $this->functions->getWithAuthenticate("Facebook");
+        
+        /* 
+         *  Se o usuario estiver autenticado pelo facebook ou pelo zfcuser,
+         *  sera redirecionado para o module home
+         */
+        if ($user_profile || $this->zfcUserAuthentication()->hasIdentity()){
+            
+            return $this->redirect()->toRoute("album"); 
+        }
+        
+        $vm = new ViewModel();
+        // - Reseta o layout padrão da aplicação
+        // $vm->setTerminal(true);
+        
+        return $vm;
     }
 }

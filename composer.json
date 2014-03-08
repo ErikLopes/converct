@@ -9,6 +9,10 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.2.*"
+        "zendframework/zendframework": "2.2.*",
+        "doctrine/doctrine-orm-module": "0.*",
+        "hybridauth/hybridauth" : "dev-master",
+	"socalnick/scn-social-auth": "dev-master",
+        "zf-commons/zfc-user": "dev-master"
     }
 }
