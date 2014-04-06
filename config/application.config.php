@@ -5,7 +5,6 @@ return array(
         'Application',
         'DoctrineModule',
 	'DoctrineORMModule', 
-        'ScnSocialAuth',
         'ZfcUser',
         'Functions',
         'Album'

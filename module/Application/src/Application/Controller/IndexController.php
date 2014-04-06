@@ -24,14 +24,12 @@ class IndexController extends AbstractActionController
     }
     
     public function indexAction(){
-           
-        $user_profile = $this->functions->getWithAuthenticate("Facebook");
         
         /* 
          *  Se o usuario estiver autenticado pelo facebook ou pelo zfcuser,
          *  sera redirecionado para o module home
          */
-        if ($user_profile || $this->zfcUserAuthentication()->hasIdentity()){
+        if ($this->zfcUserAuthentication()->hasIdentity()){
             
             return $this->redirect()->toRoute("album"); 
         }
